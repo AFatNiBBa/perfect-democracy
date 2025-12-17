@@ -10,6 +10,7 @@
     "@seanalunni/vite-plugin-solid": "^1.0.3",
     "@types/node": "^25.0.3",
     "sass": "^1.97.0",
+    "solid-ctrl-flow": "^5.0.1",
     "solid-js": "^1.9.5",
     "vite": "^7.1.4"
   }

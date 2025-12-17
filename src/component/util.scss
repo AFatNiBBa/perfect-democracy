@@ -1,0 +1,17 @@
+
+$z-index-precendence: 1;
+
+$color-opaque: light-dark(#0000000a, #ffffff30);
+$color-detail: light-dark(#e7e7e7, #909090);
+$color-border: lightgray;
+
+$border: 1px solid $color-border;
+$radius: .5ch;
+$gap: 1ch;
+
+%panel {
+	background-color: $color-opaque;
+	backdrop-filter: blur(3px);
+	border: $border;
+	border-radius: $radius;
+}

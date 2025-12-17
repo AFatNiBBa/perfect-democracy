@@ -1,0 +1,27 @@
+
+@use "../util.scss";
+
+.win {
+	@extend %panel;
+	
+	position: absolute;
+	resize: both;
+
+	display: grid;
+	grid: 2ch 1fr / 1fr;
+
+	&:hover { z-index: util.$z-index-precendence; }
+
+	> main { padding: util.$gap; }
+
+	> header {
+		background-color: util.$color-detail;
+		cursor: move;
+	}
+
+	@layer {
+		:has(> &) {
+			position: relative;
+		}
+	}
+}
