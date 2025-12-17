@@ -2,14 +2,14 @@
 import style from "./win.module.scss";
 import layout from "@seanalunni/style/layout";
 
-import { ComponentProps, onCleanup, onMount, splitProps } from "solid-js";
+import { ComponentProps, JSX, onCleanup, onMount, splitProps } from "solid-js";
 import { memoProps } from "solid-ctrl-flow";
 
 /** Component that simulates a floating window */
-export function Win(props: ComponentProps<"div">) {
+export function Win(props: { header?: JSX.Element } & ComponentProps<"div">) {
 	const [ memo, mine, other ] = processProps(props);
-	var div: HTMLDivElement, header: HTMLElement;
 	var moving = false, prevX = 0, prevY = 0;
+	var div: HTMLDivElement;
 
 	onMount(() => {
 		const doc = div.ownerDocument;
@@ -38,7 +38,7 @@ export function Win(props: ComponentProps<"div">) {
 	return <>
 		<div ref={div!} classList={{ [`${style.win} ${layout.scroll} ${memo.class ?? ""}`]: true, ...memo.classList }} {...other}>
 			<header
-			 	ref={header!}
+				children={mine.header}
 				onMouseDown={e => {
 					e.preventDefault();
 					prevX = e.clientX;
@@ -58,7 +58,7 @@ export function Win(props: ComponentProps<"div">) {
  * @param props The properties to organize
  */
 function processProps(props: ComponentProps<typeof Win>) {
-	const out = splitProps(props, [ "class", "classList" ], [ "children" ]);
+	const out = splitProps(props, [ "class", "classList" ], [ "header", "children" ]);
 	out[0] = memoProps(out[0]);
 	return out;
 }

@@ -8,11 +8,11 @@
 	resize: both;
 
 	display: grid;
-	grid: 2ch 1fr / 1fr;
+	grid: max-content 1fr / 1fr;
 
 	&:hover { z-index: util.$z-index-precendence; }
 
-	> main { padding: util.$gap; }
+	> * { padding: util.$gap; }
 
 	> header {
 		background-color: util.$color-detail;
