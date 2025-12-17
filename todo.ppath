@@ -1,0 +1,33 @@
+
+deve permettere a più persone di votare in una singola sessione con evento di voto che poi potrebbe finire sul database in caso
+
+deve mostrare un grafico con l'attuale stato dei voti > visualizzare anche gli step?
+
+deve mostrare la lista dei partiti > ognuno può essere ispezionato e può essere visualizzato un elenco di opinioni > ogni opinione è espandibile e mostra la spiegazione
+
+ogni persona deve avere un voto a disposizione
+
+ogni voto può essere diviso in varie "frazioni dinamiche" (tipo "fr" sul CSS)
+
+ad ogni frazione viene attribuita una classifica di partiti
+
+la classifica dei partiti può avere N elementi > {
+  0 > non mi importa dell'elezione
+  1 > se non vince questo, fate come ve pare
+  2 > se non può vincere dai il mio voto a questo
+}
+
+ogni elemento della classifica dei partiti ha anche un flag che permette di segnare come negativa la frazione del voto > (non mi importa di chi vince, ma questo deve perdere)
+
+conteggio > {
+  le frazioni (a prescidere da chi l'ha emesse) vengono grouppate per primo partito in classifica
+  vengono contati i voti per ogni partito (considerando anche i negativi)
+  si individua il partito con meno voti
+  si ottengono tutte le frazioni che erano allocate su quel partito
+  si elimina quel partito dal gruppaggio e si ridistribuiscono le frazioni in base al primo elemento della classifica che non è stato eliminato
+  ripetere finchè non rimane un solo partito
+}
+
+problema > cosa fare se ad un certo step ci sono N ultime posizioni con lo stesso numero di voti? > guarda gli elementi successivi della classifica delle frazioni allocate su altri partiti > prendi il primo elemento che tratta di uno dei partiti in pareggio e alloca temporaneamente quelle frazioni per capire a quale dare priorità > comunque si possono verificare pareggi, come vanno gestiti? SE vanno gestiti > pensa meglio all'algoritmo
+
+è possibile utilizzare un voto negativo su un'altro partito poi uno positivo sul tuo per avvantaggiare quest'ultimo? > qualunque sia il risultato scrivilo sul "readMe.md"
