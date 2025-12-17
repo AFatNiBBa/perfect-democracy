@@ -24,7 +24,6 @@ export function Win(props: { header?: JSX.Element } & ComponentProps<"div">) {
 
 		function onMouseMove(e: MouseEvent) {
 			if (!moving) return;
-			e.preventDefault();
 			const nextX = prevX - e.clientX;
 			const nextY = prevY - e.clientY;
 			prevX = e.clientX;
@@ -36,11 +35,10 @@ export function Win(props: { header?: JSX.Element } & ComponentProps<"div">) {
 	});
 	
 	return <>
-		<div ref={div!} classList={{ [`${style.win} ${layout.scroll} ${memo.class ?? ""}`]: true, ...memo.classList }} {...other}>
+		<div ref={div!} tabIndex={-1} classList={{ [`${style.win} ${layout.scroll} ${memo.class ?? ""}`]: true, ...memo.classList }} {...other}>
 			<header
 				children={mine.header}
 				onMouseDown={e => {
-					e.preventDefault();
 					prevX = e.clientX;
 					prevY = e.clientY;
 					moving = true;

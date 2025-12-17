@@ -10,7 +10,7 @@
 	display: grid;
 	grid: max-content 1fr / 1fr;
 
-	&:hover { z-index: util.$z-index-precendence; }
+	&:focus-within { z-index: util.$z-index-precendence; }
 
 	> * { padding: util.$gap; }
 
