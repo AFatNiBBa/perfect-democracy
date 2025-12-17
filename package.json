@@ -9,6 +9,7 @@
     "@seanalunni/style": "^4.0.2",
     "@seanalunni/vite-plugin-solid": "^1.0.3",
     "@types/node": "^25.0.3",
+    "sass": "^1.97.0",
     "solid-js": "^1.9.5",
     "vite": "^7.1.4"
   }
