@@ -31,3 +31,5 @@ conteggio > {
 problema > cosa fare se ad un certo step ci sono N ultime posizioni con lo stesso numero di voti? > guarda gli elementi successivi della classifica delle frazioni allocate su altri partiti > prendi il primo elemento che tratta di uno dei partiti in pareggio e alloca temporaneamente quelle frazioni per capire a quale dare priorità > comunque si possono verificare pareggi, come vanno gestiti? SE vanno gestiti > pensa meglio all'algoritmo
 
 è possibile utilizzare un voto negativo su un'altro partito poi uno positivo sul tuo per avvantaggiare quest'ultimo? > qualunque sia il risultato scrivilo sul "readMe.md"
+
+per ogni frazione mostra anche piccolino "(posto dove sta la frazione) / *totale* = *percentuale*"
