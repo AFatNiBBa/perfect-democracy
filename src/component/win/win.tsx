@@ -35,7 +35,7 @@ export function Win(props: { header?: JSX.Element } & ComponentProps<"div">) {
 	});
 	
 	return <>
-		<div ref={div!} tabIndex={-1} classList={{ [`${style.win} ${layout.scroll} ${memo.class ?? ""}`]: true, ...memo.classList }} {...other}>
+		<div ref={div!} tabIndex={-1} classList={{ [`${style.win} ${memo.class ?? ""}`]: true, ...memo.classList }} {...other}>
 			<header
 				children={mine.header}
 				onMouseDown={e => {
@@ -44,7 +44,7 @@ export function Win(props: { header?: JSX.Element } & ComponentProps<"div">) {
 					moving = true;
 				}}
 			/>
-			<main class={layout.slot}>
+			<main class={`${layout.scroll} ${layout.slot}`}>
 				{mine.children}
 			</main>
 		</div>

@@ -5,6 +5,7 @@
 	@extend %panel;
 	
 	position: absolute;
+	overflow: hidden;
 	resize: both;
 
 	display: grid;

@@ -52,17 +52,19 @@ function PieArc(props: { arc: Arc, total: number }) {
 function *getArcs(total: number, items: Iterable<Slice>) {
 	var radStart = 0, xStart = END, yStart = CENTER; // The initial values are those of the 0° angle
 	for (const elm of items) {
-		const radEnd = elm.value * Math.PI * 2 / total + radStart;
+		const rad = elm.value * Math.PI * 2 / total;
+		const radEnd = rad + radStart;
 		const radLabel = (radEnd + radStart) / 2;
+		radStart = radEnd;
 		yield {
 			...elm,
+			rad,
 			xStart,
 			yStart,
 			xEnd: xStart = Math.cos(radEnd) * RADIUS + CENTER,
 			yEnd: yStart = Math.sin(radEnd) * RADIUS + CENTER,
 			xLabel: Math.cos(radLabel) * RADIUS / 2 + CENTER,
 			yLabel: Math.sin(radLabel) * RADIUS / 2 + CENTER,
-			rad: radStart = radEnd
 		} satisfies Arc;
 	}
 }
