@@ -24,10 +24,10 @@ function Root() {
           getColor={x => x.c}
           getValue={x => x.v}
           items={[
-            { l: "a1", c: "red", v: 3 },
-            { l: "a2", c: "orange", get v() { return g(); } },
-            { l: "a3", c: "dodgerblue", v: 4 },
-            { l: "a4", c: "green", v: 6 },
+            { l: "Etichetta molto lunga uno", c: "red", v: 3 },
+            { l: "Etichetta molto lunga due", c: "orange", get v() { return g(); } },
+            { l: "Etichetta molto lunga tre", c: "dodgerblue", v: 4 },
+            { l: "Etichetta molto lunga quattro", c: "green", v: 6 },
             { c: "transparent", v: 7 }
           ]}
         />

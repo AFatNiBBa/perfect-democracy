@@ -33,5 +33,3 @@ problema > cosa fare se ad un certo step ci sono N ultime posizioni con lo stess
 è possibile utilizzare un voto negativo su un'altro partito poi uno positivo sul tuo per avvantaggiare quest'ultimo? > qualunque sia il risultato scrivilo sul "readMe.md"
 
 per ogni frazione mostra anche piccolino "(posto dove sta la frazione) / *totale* = *percentuale*"
-
-mettere le label su "PieChart" > non riesco a capire come funziona no i "text" SVG

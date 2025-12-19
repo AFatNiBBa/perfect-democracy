@@ -16,33 +16,59 @@ export function PieChart<T>(props: { items: T[] } & Conv<T> & ComponentProps<"sv
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox={`${START} ${START} ${END} ${END}`} {...other}>
 			{/* I use "Index" because it caches its content by index, "For" would have cached by value, which wouldn't be useful since the arc objects change every time */}
 			<Index each={arcs()}>
-					{x => <PieArc arc={x()} total={total()} />}
+					{x => <PieSliceArc arc={x()} />}
+			</Index>
+			<Index each={arcs()}>
+					{x => <PieSliceLabel arc={x()} />}
 			</Index>
     </svg>
 	</>
 }
 
-/** Component that generates a single slice of a {@link PieChart} */
-function PieArc(props: { arc: Arc, total: number }) {
-	const arc = () => props.arc;
-	// const perc = createMemo(() => `${(arc().value * 100 / props.total).toFixed(2)}%`)
+//#region PARTS
+
+/** Component that generates the path of a single slice of a {@link PieChart} */
+function PieSliceArc(props: { arc: Arc }) {
 	return <>
 		<path
-			fill={arc().color}
+			fill={props.arc.color}
 			d={`
 				M ${CENTER} ${CENTER}
-				L ${arc().xStart} ${arc().yStart}
-				A ${RADIUS} ${RADIUS} 0 ${+(arc().rad > Math.PI)} 1 ${arc().xEnd} ${arc().yEnd}
+				L ${props.arc.xStart} ${props.arc.yStart}
+				A ${RADIUS} ${RADIUS} 0 ${+(props.arc.rad > Math.PI)} 1 ${props.arc.xEnd} ${props.arc.yEnd}
 				Z
 			`}
 		/>
-		{/* <text x={arc().xLabel} y={arc().yLabel}>
-			<Show when={arc().label} fallback={perc()}>
-				{x => <>{x()} ({perc()})</>}
-			</Show>
-		</text> */}
 	</>
 }
+
+/** Component that generates the label of a single slice of a {@link PieChart} */
+function PieSliceLabel(props: { arc: Arc }) {
+	return <>
+		<Show when={props.arc.label}>
+			{label => <>
+				<text 
+					x={props.arc.xLabel} 
+					y={props.arc.yLabel} 
+					
+					children={label()}
+					dominant-baseline="middle"
+					text-anchor="middle" 
+					font-weight="bold"
+					font-size="0.06"
+
+					stroke-width="0.003"
+					stroke="black"
+					fill="white"
+				/>
+			</>}
+		</Show>
+	</>
+}
+
+//#endregion
+
+//#region UTILS
 
 /**
  * Converts a sequence of {@link Slice}s into sequential SVG arcs
@@ -83,6 +109,10 @@ function getSlice<T>(conv: Conv<T>, obj: T, i: Accessor<number>) {
 	});
 }
 
+//#endregion
+
+//#region TYPES
+
 /** Object that provides the details on how to convert a value of type {@link T} into a {@link Slice} */
 interface Conv<T> {
 	getLabel?(x: T, i: Accessor<number>): string | undefined;
@@ -107,3 +137,5 @@ interface Slice {
 	color: DataType.Color;
 	value: number;
 }
+
+//#endregion
