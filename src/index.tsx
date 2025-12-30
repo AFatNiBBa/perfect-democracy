@@ -10,8 +10,6 @@ import { render } from 'solid-js/web';
 
 /** The main component of the page */
 function Root() {
-  const [ g, s ] = createSignal(4);
-  Object.assign(globalThis, { s });
   return <>
     <div class={`${layout.root} ${layout.slot}`}>
       <Win header="ciao" style={{ width: "300px", height: "200px", top: "100px", left: "400px" }}>
@@ -24,11 +22,13 @@ function Root() {
           getColor={x => x.c}
           getValue={x => x.v}
           items={[
-            { l: "Etichetta molto lunga uno", c: "red", v: 3 },
-            { l: "Etichetta molto lunga due", c: "orange", get v() { return g(); } },
-            { l: "Etichetta molto lunga tre", c: "dodgerblue", v: 4 },
-            { l: "Etichetta molto lunga quattro", c: "green", v: 6 },
-            { c: "transparent", v: 7 }
+            { l: "Fratelli d'Italia", c: "#003366", v: 7300000 },
+            { l: "Partito Democratico", c: "#E30613", v: 5400000 },
+            { l: "Movimento 5 Stelle", c: "#FFD500", v: 4300000 },
+            { l: "Lega", c: "#006600", v: 2500000 },
+            { l: "Forza Italia", c: "#0066CC", v: 2300000 },
+            { l: "Azione - Italia Viva", c: "#E95C0E", v: 2100000 },
+            { l: "Alleanza Verdi-Sinistra", c: "#CC0000", v: 1100000 }
           ]}
         />
       </Win>
