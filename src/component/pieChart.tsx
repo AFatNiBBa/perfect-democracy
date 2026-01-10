@@ -3,8 +3,11 @@ import { Accessor, ComponentProps, createMemo, Index, mapArray, Show } from "sol
 import { memoProps, splitAndMemoProps } from "solid-ctrl-flow";
 import { DataType } from "csstype";
 
+/** The parameters of the labels */
+const LABEL_HEIGHT = .06, LABEL_OFFSET = .02;
+
 /** The parameters of the SVG circle */
-const START = 0, END = 1, CENTER = (END + START) / 2, RADIUS = (END - START) / 2;
+const START = 0, END = 1, CENTER = (END + START) / 2, RADIUS = (END - START) / 2 - LABEL_HEIGHT;
 
 /** Component that generates an SVG pie chart based on the provided values */
 export function PieChart<T>(props: { items: T[] } & Conv<T> & ComponentProps<"svg">) {
@@ -52,10 +55,10 @@ function PieSliceLabel(props: { arc: Arc }) {
 					y={props.arc.yLabel} 
 					
 					children={label()}
-					dominant-baseline="middle"
-					text-anchor="middle" 
+					dominant-baseline={props.arc.yLabel > CENTER ? "mathematical" : "text-bottom"}
+					text-anchor={props.arc.xLabel > CENTER ? "start" : "end"}
+					font-size={LABEL_HEIGHT.toString()}
 					font-weight="bold"
-					font-size="0.06"
 
 					stroke-width="0.003"
 					stroke="black"
@@ -89,8 +92,8 @@ function *getArcs(total: number, items: Iterable<Slice>) {
 			yStart,
 			xEnd: xStart = Math.cos(radEnd) * RADIUS + CENTER,
 			yEnd: yStart = Math.sin(radEnd) * RADIUS + CENTER,
-			xLabel: Math.cos(radLabel) * RADIUS / 2 + CENTER,
-			yLabel: Math.sin(radLabel) * RADIUS / 2 + CENTER,
+			xLabel: Math.cos(radLabel) * (RADIUS + LABEL_OFFSET) + CENTER,
+			yLabel: Math.sin(radLabel) * (RADIUS + LABEL_OFFSET) + CENTER,
 		} satisfies Arc;
 	}
 }
