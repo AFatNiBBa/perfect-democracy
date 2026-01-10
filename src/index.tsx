@@ -5,7 +5,6 @@ import layout from "@seanalunni/style/layout";
 
 import { PieChart } from "./component/pieChart";
 import { Win } from "./component/win/win";
-import { createSignal } from "solid-js";
 import { render } from 'solid-js/web';
 
 /** The main component of the page */

@@ -76,7 +76,7 @@ function PieSliceLabel(props: { arc: Arc }) {
  * @param items The sequence of {@link Slice}s
  */
 function *getArcs(total: number, items: Iterable<Slice>) {
-	var radStart = 0, xStart = END, yStart = CENTER; // The initial values are those of the 0° angle
+	var radStart = 0, xStart = CENTER + RADIUS, yStart = CENTER; // The initial values are those of the 0° angle
 	for (const elm of items) {
 		const rad = elm.value * Math.PI * 2 / total;
 		const radEnd = rad + radStart;
@@ -122,13 +122,13 @@ interface Conv<T> {
 
 /** Type that represents a fully calculated arc */
 interface Arc extends Slice {
+	rad: number;
 	xStart: number;
 	yStart: number;
 	xEnd: number;
 	yEnd: number;
 	xLabel: number;
 	yLabel: number;
-	rad: number;
 }
 
 /** Type that represents a single slice of pie chart */
