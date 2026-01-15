@@ -1,4 +1,5 @@
 
+import "./test/demo";
 import "@seanalunni/style/fix";
 
 import layout from "@seanalunni/style/layout";
