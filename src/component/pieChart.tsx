@@ -1,5 +1,5 @@
 
-import { Accessor, ComponentProps, createMemo, Index, mapArray, Show } from "solid-js";
+import { Accessor, ComponentProps, createMemo, Index, mapArray, Match, Show, Switch } from "solid-js";
 import { memoProps, splitAndMemoProps } from "solid-ctrl-flow";
 import { DataType } from "csstype";
 
@@ -18,9 +18,17 @@ export function PieChart<T>(props: { items: T[] } & Conv<T> & ComponentProps<"sv
 	return <>	
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox={`${START} ${START} ${END} ${END}`} {...other}>
 			{/* I use "Index" because it caches its content by index, "For" would have cached by value, which wouldn't be useful since the arc objects change every time */}
-			<Index each={arcs()}>
-					{x => <PieSliceArc arc={x()} />}
-			</Index>
+			<Switch>
+				<Match when={arcs().length === 1}>
+					{/* I'm not allowed to draw a 360° arc with SVG */}
+					<circle cx={CENTER} cy={CENTER} r={RADIUS} fill={arcs()[0].color} />
+				</Match>
+				<Match when>
+					<Index each={arcs()}>
+							{x => <PieSliceArc arc={x()} />}
+					</Index>
+				</Match>
+			</Switch>
 			<Index each={arcs()}>
 					{x => <PieSliceLabel arc={x()} />}
 			</Index>

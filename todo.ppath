@@ -14,3 +14,9 @@ problema > cosa fare se ad un certo step ci sono N ultime posizioni con lo stess
 è possibile utilizzare un voto negativo su un'altro partito poi uno positivo sul tuo per avvantaggiare quest'ultimo? > qualunque sia il risultato scrivilo sul "readMe.md"
 
 per ogni frazione mostra anche piccolino "(posto dove sta la frazione) / *totale* = *percentuale*"
+
+fai un "sumBy()" generico >> togli "sumScores()"?
+
+aggiungi i tooltip coi valori sugli elementi del grafico a torta
+
+va cambiato il criterio per cui "PieChart" decide di fare il "circle"?

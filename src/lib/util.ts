@@ -21,3 +21,15 @@ export function *normalizeVotesForUser(list: UserVote[]) {
 		index: 0
 	}));
 }
+
+/**
+ * Adds an element to one of the lists of {@link map}
+ * @param map The {@link Map} that stores the groups to which to add the element
+ * @param k The key to which to add the element
+ * @param v The element to add
+ */
+export function addToGroup<K, V>(map: Map<K, V[]>, k: K, v: V) {
+	const list = map.get(k);
+	if (!list) map.set(k, [ v ]);
+	else list.push(v);
+}

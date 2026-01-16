@@ -2,6 +2,7 @@
 /** Type that represents a political party */
 export interface Party {
 	name: string;
+	color: string;
 }
 
 /**

@@ -3,12 +3,13 @@ import { normalizeVotesForUser, sumScores } from "../lib/util";
 import { yieldMajoritySteps } from "../lib/majority";
 import { Party, UserVote } from "../lib/model";
 
-const a: Party = { name: "A" };
-const b: Party = { name: "B" };
-const c: Party = { name: "C" };
-const d: Party = { name: "D" };
+const empty: Party = { name: "", color: "transparent" };
+const a: Party = { name: "A", color: "red" };
+const b: Party = { name: "B", color: "green" };
+const c: Party = { name: "C", color: "blue" };
+const d: Party = { name: "D", color: "yellow" };
 
-const votes: UserVote[][] = [
+const userVotes: UserVote[][] = [
 	[
 		{ score: 3, positive: true, parties: [a, b] }, // .5
 		{ score: 2, positive: false, parties: [c] }, // .33333333333333333333
@@ -25,5 +26,20 @@ const votes: UserVote[][] = [
 	// ]
 ];
 
-for (const elm of yieldMajoritySteps(Iterator.from(votes).flatMap(x => normalizeVotesForUser(x))))
-	console.log(Object.fromEntries(elm.entries().map(([k, v]) => [k.name, sumScores(v)])));
+const calcVotes = Iterator
+		.from(userVotes)
+		.flatMap(x => normalizeVotesForUser(x))
+		.toArray();
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+export const DEMO_INITIAL_SCORE = calcVotes.reduce((sum, v) => sum + Math.abs(v.score), 0);
+
+export const DEMO_RESULTS = yieldMajoritySteps(calcVotes)
+	.map(step => step
+		.entries()
+		.map(([ party, v ]) => ({ party, value: sumScores(v) }))
+		.filter(x => x.value > 0)
+		.toArray())
+	.map(x => (x.push({ party: empty, value: DEMO_INITIAL_SCORE - x.reduce((sum, x) => sum + x.value, 0) }), x))
+	.toArray();

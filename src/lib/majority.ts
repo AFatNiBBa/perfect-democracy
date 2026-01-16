@@ -1,6 +1,6 @@
 
+import { addToGroup, sumScores } from "./util";
 import { CalcVote, Party } from "./model";
-import { sumScores } from "./util";
 
 /**
  * Yields the steps of a majority election given a list of calculated votes.
@@ -48,9 +48,7 @@ export function *yieldMajoritySteps(list: Iterable<CalcVote>) {
 			var nextParty: Party;
 			do if (!(nextParty = elm.parties[++elm.index])) continue outer;
 			while (losers.has(nextParty));
-			const list = group.get(nextParty);
-			if (!list) group.set(nextParty, [elm]);
-			else list.push(elm);
+			addToGroup(group, nextParty, elm);
 		}
 
 		yield group;
