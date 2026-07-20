@@ -20,3 +20,13 @@ fai un "sumBy()" generico >> togli "sumScores()"?
 aggiungi i tooltip coi valori sugli elementi del grafico a torta
 
 va cambiato il criterio per cui "PieChart" decide di fare il "circle"?
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+se una frazione di voto finisce gli elementi, mentre altre frazioni rimangono vive, la potenza di voto della frazione finita dovrebbe essere ridistribuita sulle altre frazioni?
+
+il calcolo non dovrebbe prendere tutti i voti, ma dovrebbe essere updatabile man mano che i voti arrivano (In caso di calcolo in tempo reale) piuttusto che essere rieseguito del tutto ogni volta
+
+tutto il problema che il programma tenta di gestire, non potrebbe essere semplicemente risolto con le alleanze? > Esempio: "A" (3 voti), "B" (4 voti), "C" (5 voti) > quelli di "A" voterebbero "B" quindi non è vero che vince "C" > questo potrebbe essere risolto semplicemente da un'alleanza tra "A" e "B" >> ma se credo che un'alleanza sarebbe troppo limitante? > se come cittadino preferissi che ci vada "B" piuttosto che "A" + "B" anche se avevo votato per "A"? > Si può verificare? >> E se "A" e "B" NON volessero allearsi? > Se semplicemente ciò che voglio è che non ci vada "C" come devo fare? > Gestire la possibilità del voto negativo senza la classifica dei partiti?
+
+se ho "A" (70%) e "B" (-30%) è necessario fare una riproporzione in modo che la parte positiva sia equivalente al 100%? > È possibile riproporzionarla in modo che anche sul grafico sia visibile il negativo? > Chiedi al sommo se c'è già una pratica in voga per mostrare i negativi sui grafici a torta >> Il grafico a torta è la miglior maniera per mostrare una cosa simile? > Le barre non sarebbero meglio? > La percentuale (Frazione sul totale) serve?
